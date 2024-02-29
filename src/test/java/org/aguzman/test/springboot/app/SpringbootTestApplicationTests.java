@@ -8,16 +8,12 @@ import org.aguzman.test.springboot.app.models.Banco;
 import org.aguzman.test.springboot.app.models.Cuenta;
 import org.aguzman.test.springboot.app.repositories.BancoRepository;
 import org.aguzman.test.springboot.app.repositories.CuentaRepository;
-import org.aguzman.test.springboot.app.services.CuentaService;
 import org.aguzman.test.springboot.app.services.CuentaServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
 import java.math.BigDecimal;
 
 @SpringBootTest
@@ -25,12 +21,10 @@ class SpringbootTestApplicationTests {
 
 	@MockBean
 	CuentaRepository cuentaRepository;
-
 	@MockBean
 	BancoRepository bancoRepository;
-
 	@Autowired
-	CuentaService service;
+	CuentaServiceImpl service;
 
 	@BeforeEach
 	void setUp() {
@@ -117,6 +111,7 @@ class SpringbootTestApplicationTests {
 		Cuenta cuenta1 = service.findById(1L);
 		Cuenta cuenta2 = service.findById(1L);
 
+		//Es lo mismo assertSame que assertTue
 		assertSame(cuenta1, cuenta2);
 		assertTrue(cuenta1 == cuenta2);
 		assertEquals("Andrés", cuenta1.getPersona());
